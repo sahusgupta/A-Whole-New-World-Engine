@@ -1,27 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Config : MonoBehaviour
 {
-    private GameObject manager;
+    [SerializeField] private GameObject manager;
     private AudioSource audioS;
-    // Start is called before the first frame update
+    private Slider volumeSlider;
+
     void Start()
     {
-        manager = GameObject.Find("Manager");
+        if (manager == null)
+            manager = GameObject.Find("Manager");
+
         audioS = manager.GetComponent<AudioSource>();
-        gameObject.GetComponent<Slider>().onValueChanged.AddListener(delegate { SetVolume(); });
+        volumeSlider = GetComponent<Slider>();
+
+        // Force-enable interaction
+        volumeSlider.interactable = true;
+
+        // Print debug information
+        Debug.Log("Slider interactable: " + volumeSlider.interactable);
+        Debug.Log("Initial audio volume: " + audioS.volume);
     }
 
-    // Update is called once per frame
+    // This function should be connected in the Inspector
+    public void SetVolume()
+    {
+        if (audioS != null && volumeSlider != null)
+        {
+            float newVolume = volumeSlider.value;
+            audioS.volume = newVolume;
+            Debug.Log("SetVolume called. New volume: " + newVolume);
+        }
+        else
+        {
+            Debug.LogError("Audio source or slider reference is null");
+        }
+    }
+
     void Update()
     {
-        
-    }
-    
-    void SetVolume()
-    {
-        audioS.volume = gameObject.GetComponent<Slider>().value;
+        // Debug testing with keyboard controls
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            volumeSlider.value += 0.1f;
+            Debug.Log("Forced value up: " + volumeSlider.value);
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            volumeSlider.value -= 0.1f;
+            Debug.Log("Forced value down: " + volumeSlider.value);
+        }
     }
 }
