@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +11,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
-
+    [SerializeField] private IOManager io;
+    [SerializeField] private string savePath;
     void Start()
     {
         // Initialize sliders with current values
@@ -45,5 +48,14 @@ public class AudioManager : MonoBehaviour
             sfxSource.volume = volume;
             Debug.Log("SFX volume set to: " + volume);
         }
+    }
+
+    public void OnDestroy()
+    {
+        List<string> attrs = new List<string>();
+        attrs.Add($"SFXVolume:{sfxSource.volume}");
+        attrs.Add($"MusicVol: {musicSource.volume}");
+        attrs.Add($"MasterVol: {masterSlider.value}");
+        io.WriteToFile(savePath, attrs);
     }
 }
