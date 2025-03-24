@@ -5,20 +5,18 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource source;
 
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
-    [SerializeField] private IOManager io;
     [SerializeField] private string savePath;
     void Start()
     {
         // Initialize sliders with current values
-        if (masterSlider != null) masterSlider.value = AudioListener.volume;
-        if (musicSlider != null && musicSource != null) musicSlider.value = musicSource.volume;
-        if (sfxSlider != null && sfxSource != null) sfxSlider.value = sfxSource.volume;
+        if (masterSlider != null) masterSlider.value = source.volume;
+        if (musicSlider != null && source != null) musicSlider.value = source.volume;
+        if (sfxSlider != null && source != null) sfxSlider.value = source.volume;
 
         // Add listeners
         if (masterSlider != null) masterSlider.onValueChanged.AddListener(SetMasterVolume);
@@ -28,34 +26,35 @@ public class AudioManager : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        AudioListener.volume = volume;
+        source.volume = volume;
         Debug.Log("Master volume set to: " + volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        if (musicSource != null)
+        if (source != null)
         {
-            musicSource.volume = volume * AudioListener.volume;
+            source.volume = volume * masterSlider.value;
             Debug.Log("Music volume set to: " + volume);
         }
     }
 
     public void SetSFXVolume(float volume)
     {
-        if (sfxSource != null)
+        if (source != null)
         {
-            sfxSource.volume = volume;
+            source.volume = volume;
             Debug.Log("SFX volume set to: " + volume);
         }
     }
 
     public void OnDestroy()
     {
-        List<string> attrs = new List<string>();
-        attrs.Add($"SFXVolume:{sfxSource.volume}");
-        attrs.Add($"MusicVol: {musicSource.volume}");
-        attrs.Add($"MasterVol: {masterSlider.value}");
-        io.WriteToFile(savePath, attrs);
+        List<string> attrs = new List<string>
+        {
+            $"SFXVolume:{source.volume}",
+            $"MusicVol: {source.volume}",
+            $"MasterVol: {masterSlider.value}"
+        };
     }
 }

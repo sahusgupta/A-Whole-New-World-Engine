@@ -22,6 +22,7 @@ public class ToggleMenu : MonoBehaviour
 
     void ToggleView(int r)
     {
+
         for (int i = 0; i < menus.Length; i++)
         {
             if (i == r)
