@@ -13,10 +13,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private string savePath;
     void Start()
     {
-        // Initialize sliders with current values
-        if (masterSlider != null) masterSlider.value = source1.volume / musicSlider.value;
-        if (musicSlider != null && source1 != null) musicSlider.value = source1.volume;
-        if (sfxSlider != null && source2 != null) sfxSlider.value = source2.volume;
+
 
         // Add listeners
         if (masterSlider != null) masterSlider.onValueChanged.AddListener(SetMasterVolume);
