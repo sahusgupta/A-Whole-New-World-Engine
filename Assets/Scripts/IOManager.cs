@@ -9,9 +9,8 @@ using TMPro;
 public class IOManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameMaster;
-    [SerializeField] private AudioSource masterAudioSource; // Changed from AudioMixer to AudioSource
-    [SerializeField] private AudioSource musicAudioSource; // Added separate audio sources
-    [SerializeField] private AudioSource sfxAudioSource; // Added separate audio sources
+    [SerializeField] private AudioSource musicAudioSource; 
+    [SerializeField] private AudioSource sfxAudioSource;
     [SerializeField] private Slider masterVolumeSlider;
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
@@ -30,19 +29,13 @@ public class IOManager : MonoBehaviour
 
     void Awake()
     {
-        // Set the settings file path (in persistent data path)
         settingsFilePath = Path.Combine(Application.persistentDataPath, "gameSettings.txt");
-
-        // Load settings on startup
         LoadSettings();
-
-        // Apply the loaded settings
         ApplySettings();
     }
 
     void Start()
     {
-        // Find all return buttons and add listeners
         returns = GameObject.FindObjectsOfType<Button>(true);
         foreach (Button b in returns)
         {
@@ -52,26 +45,18 @@ public class IOManager : MonoBehaviour
             }
         }
 
-        // Save settings on start (ensures file exists)
         SaveSettings();
     }
 
-    // Method to handle the return button press
     public void OnReturnButtonPressed()
     {
-        // Update settings from UI values
         UpdateSettingsFromUI();
-
-        // Save the updated settings
         SaveSettings();
-
-        // Apply the settings
         ApplySettings();
 
         Debug.Log("SAVING DATA");
     }
 
-    // Method to update settings from UI
     private void UpdateSettingsFromUI()
     {
         if (masterVolumeSlider != null)
@@ -172,8 +157,6 @@ public class IOManager : MonoBehaviour
         float sfxVolume = gameSettings["SFXVolume"];
 
         // Set volumes directly to audio sources
-        if (masterAudioSource != null)
-            masterAudioSource.volume = masterVolume;
 
         if (musicAudioSource != null)
             musicAudioSource.volume = musicVolume * masterVolume;

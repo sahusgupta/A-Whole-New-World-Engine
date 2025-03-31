@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource source;
-
+    [SerializeField] private AudioSource source1;
+    [SerializeField] private AudioSource source2;
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
@@ -14,9 +14,9 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         // Initialize sliders with current values
-        if (masterSlider != null) masterSlider.value = source.volume;
-        if (musicSlider != null && source != null) musicSlider.value = source.volume;
-        if (sfxSlider != null && source != null) sfxSlider.value = source.volume;
+        if (masterSlider != null) masterSlider.value = source1.volume / musicSlider.value;
+        if (musicSlider != null && source1 != null) musicSlider.value = source1.volume;
+        if (sfxSlider != null && source2 != null) sfxSlider.value = source2.volume;
 
         // Add listeners
         if (masterSlider != null) masterSlider.onValueChanged.AddListener(SetMasterVolume);
@@ -26,24 +26,25 @@ public class AudioManager : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        source.volume = volume;
+        source1.volume = volume * musicSlider.value;
+        source2.volume = volume * sfxSlider.value;
         Debug.Log("Master volume set to: " + volume);
     }
 
     public void SetMusicVolume(float volume)
     {
-        if (source != null)
+        if (source1 != null)
         {
-            source.volume = volume * masterSlider.value;
+            source1.volume = volume * masterSlider.value;
             Debug.Log("Music volume set to: " + volume);
         }
     }
 
     public void SetSFXVolume(float volume)
     {
-        if (source != null)
+        if (source2 != null)
         {
-            source.volume = volume;
+            source2.volume = volume * masterSlider.value;
             Debug.Log("SFX volume set to: " + volume);
         }
     }
@@ -52,8 +53,8 @@ public class AudioManager : MonoBehaviour
     {
         List<string> attrs = new List<string>
         {
-            $"SFXVolume:{source.volume}",
-            $"MusicVol: {source.volume}",
+            $"SFXVolume:{source2.volume}",
+            $"MusicVol: {source1.volume}",
             $"MasterVol: {masterSlider.value}"
         };
     }
