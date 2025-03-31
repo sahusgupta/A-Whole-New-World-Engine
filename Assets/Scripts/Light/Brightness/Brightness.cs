@@ -6,9 +6,12 @@ public class Brightness : MonoBehaviour
 {
     // Start is called before the first frame update
     private Slider s;
+    private GameObject light;
     void Start()
     {
         s = GetComponent<Slider>();
+        s.onValueChanged.AddListener(OnValueChanged);
+        light = GameObject.Find("Directional Light");
     }
 
     // Update is called once per frame
@@ -17,8 +20,8 @@ public class Brightness : MonoBehaviour
         
     }
 
-    void OnValueChange()
+    public void OnValueChanged(float brightness)
     {
-        Screen.brightness = s.value;
+        light.GetComponent<Light>().intensity = brightness * 10;
     }
 }
