@@ -241,7 +241,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1137,7 +1137,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1492,7 +1492,6 @@ GameObject:
   - component: {fileID: 432140419}
   - component: {fileID: 432140418}
   - component: {fileID: 432140421}
-  - component: {fileID: 432140422}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1744,34 +1743,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &432140422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432140414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ee60cbdb8915b048ba4ed88b407a4d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  earthObject: {fileID: 483500600}
-  mainCamera: {fileID: 0}
-  earthTexture: {fileID: 0}
-  zoomSpeed: 2
-  zoomDistance: 0.2
-  oceanEnvironment: {fileID: 0}
-  plainsEnvironment: {fileID: 0}
-  mountainEnvironment: {fileID: 0}
-  desertEnvironment: {fileID: 0}
-  snowEnvironment: {fileID: 0}
-  oceanColor: {r: 0, g: 0.2, b: 0.8, a: 1}
-  plainsColor: {r: 0.2, g: 0.6, b: 0.2, a: 1}
-  mountainColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  desertColor: {r: 0.8, g: 0.7, b: 0.3, a: 1}
-  snowColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
-  colorMatchThreshold: 0.2
 --- !u!1 &438901819
 GameObject:
   m_ObjectHideFlags: 0
@@ -3537,7 +3508,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4512,7 +4483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1001317032
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4751,7 +4722,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4827,7 +4798,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5041,6 +5012,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1101966923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 119514, guid: 2f6c5d6ec779606459f39a8773a9fb35, type: 3}
+  m_PrefabInstance: {fileID: 1729828931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1101966927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101966923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee60cbdb8915b048ba4ed88b407a4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oceanSceneName: Ocean
+  plainsSceneName: Plains
+  waterColor: {r: 0.1, g: 0.4, b: 0.8, a: 1}
+  vegetationColor: {r: 0.2, g: 0.6, b: 0.3, a: 1}
+  colorMatchThreshold: 0.3
+  zoomDuration: 2
+  simulateZoomOnly: 1
 --- !u!1 &1107204778
 GameObject:
   m_ObjectHideFlags: 0
@@ -5349,7 +5344,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5425,7 +5420,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6627,7 +6622,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
